@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Navigation from "../Navigation";
 import Footer from "../Footer";
 import { useGetReviewData } from "../zustand";
-
+//@ts-ignore
 interface Review {
   id: number;
   comment: string;
@@ -13,23 +13,13 @@ interface Review {
 }
 
 interface MovieProps {
-  searchParams: {
-    id: any;
-    name: any;
-    // release_date: any;
-    // rating: any;
-  };
-  movie: {
-    id: number;
-    name: string;
-    releaseDate: string;
-    rating: number;
-    reviews: Review[];
-  };
-  onClose: () => void;
+  searchParams:{
+    id:number,
+    name:string
+  },
 }
 
-const Detail: React.FC<MovieProps> = ({ searchParams }) => {
+const Detail : React.FC<MovieProps>  =({ searchParams}) => {
 
   const { id, name } = searchParams;
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -50,7 +40,7 @@ const Detail: React.FC<MovieProps> = ({ searchParams }) => {
   }, []);
 
   useEffect(() => {
-    const filtered = getReviewData?.data?.filter((item: { movie_id: number }) => item.movie_id === parseInt(id));
+    const filtered = getReviewData?.data?.filter((item: { movie_id: number }) => item.movie_id == id);
     const calculated = filtered && calculateRating(filtered.map((ele: { rating: any }) => ele.rating));
     setCalculatedRating(calculated || 0);
     setReviews(filtered);
@@ -103,10 +93,9 @@ const Detail: React.FC<MovieProps> = ({ searchParams }) => {
           )}
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
-
 
 export default Detail;

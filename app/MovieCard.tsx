@@ -14,7 +14,7 @@ const MovieCard: FC<MovieCardProps> = ({ id, name, releaseDate, rating }) => {
     <Link
       className="bg-white p-4 border-blue-800 shadow rounded-md mb-4 mt-5 border-r border-b border-l border-t border-gray-400"
       href={{
-        pathname: "/detail",
+        pathname: "/Detail",
         query: {
           id,
           name,

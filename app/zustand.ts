@@ -5,6 +5,7 @@ import { create } from "zustand";
 const server = "http://13.127.141.89:8080/api";
 
 interface State {
+    [x: string]: any;
     loading: boolean;
     success: boolean;
     error: boolean;

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { AddReview } from '../API/review';
 import {usePostReviewData, useGetMovieData,useGetReviewData} from "./zustand";
 
 interface Movie {
@@ -91,7 +90,7 @@ const AddReviewCard: React.FC<AddReviewCardProps> = ({ movies, onClose }) => {
           onChange={(e) => setSelectedMovie(e.target.value)}
         >
           <option value="">Select Movie</option>
-          {getMovieData?.data?.length > 0 && getMovieData?.data?.map((movie) => (
+          {getMovieData?.data?.length > 0 && getMovieData?.data?.map((movie: { id: number; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }) => (
             <option key={movie.id} value={String(movie.id)}>
               {movie.name}
             </option>

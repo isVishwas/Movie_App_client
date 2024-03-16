@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Navigation from './Navigation';
 import SearchInput from './SearchInput';
 import MovieCard from './MovieCard';
-import { GetMovies } from '../API/movie';
 import Footer from './Footer';
 import moment from 'moment';
 import {useGetMovieData} from "./zustand";
@@ -37,7 +36,7 @@ const MainComponent: React.FC = () => {
       <div className="container mx-auto px-4 h-screen">
         <SearchInput onChange={handleSearch} />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredMovies.length > 0 ? filteredMovies.map((movie) => (
+          {filteredMovies.length > 0 ? filteredMovies.map((movie: { id: number; name: string; release_date: moment.MomentInput; rating: number; }) => (
             <MovieCard
               key={movie.id}
               id={movie.id}
@@ -52,7 +51,7 @@ const MainComponent: React.FC = () => {
           }
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
